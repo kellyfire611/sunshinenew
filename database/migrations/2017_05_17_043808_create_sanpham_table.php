@@ -1,18 +1,15 @@
 <?php
-
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCuscSanphamTable extends Migration
-{
+class CreateSanphamTable extends Migration {
+
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::create('cusc_sanpham', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->bigIncrements('sp_ma')->comment('Mã sản phẩm');
@@ -25,17 +22,15 @@ class CreateCuscSanphamTable extends Migration
             $table->timestamp('sp_taoMoi')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm tạo # Thời điểm đầu tiên tạo sản phẩm');
             $table->timestamp('sp_capNhat')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm cập nhật # Thời điểm cập nhật sản phẩm gần nhất');
             $table->tinyInteger('sp_trangThai')->default('2')->comment('Trạng thái # Trạng thái sản phẩm: 1-khóa, 2-khả dụng');
-            $table->unique(['sp_ten']);
-            
-            
-            
             $table->unsignedTinyInteger('l_ma')->comment('Loại sản phẩm # l_ma # l_ten # Mã loại sản phẩm');
             
+            $table->unique(['sp_ten']);
             $table->foreign('l_ma') //cột khóa ngoại là cột `l_ma` trong table `sanpham`
                 ->references('l_ma')->on('cusc_loai') //cột sẽ tham chiếu đến là cột `l_ma` trong table `loai`
                 ->onDelete('CASCADE')
                 ->onUpdate('CASCADE');
         });
+        DB::statement("ALTER TABLE `cusc_sanpham` comment 'Sản phẩm # Sản phẩm: hoa, giỏ hoa, vòng hoa, ...'");
     }
 
     /**
@@ -43,8 +38,7 @@ class CreateCuscSanphamTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('cusc_sanpham');
+    public function down() {
+        Schema::drop('cusc_sanpham');
     }
 }
