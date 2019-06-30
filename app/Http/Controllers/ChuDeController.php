@@ -18,7 +18,7 @@ class ChuDeController extends Controller
         // Lấy danh sach Chủ đề trong Database
         $danhsachchude = ChuDe::all(); //SELECT * FROM cusc_chude
 
-        return view('chude.index')
+        return view('backend.chude.index')
             ->with('danhsachchude', $danhsachchude);
     }
 
@@ -29,7 +29,7 @@ class ChuDeController extends Controller
      */
     public function create()
     {
-        return view('chude.create');
+        return view('backend.chude.create');
     }
 
     /**
@@ -49,7 +49,7 @@ class ChuDeController extends Controller
         $cd->cd_trangThai = 2;
         $cd->save();
 
-        return redirect()->route('chude.index');
+        return redirect()->route('backend.chude.index');
     }
 
     /**
@@ -73,7 +73,7 @@ class ChuDeController extends Controller
     {
         $chude = ChuDe::find($id);
 
-        return view('chude.edit')
+        return view('backend.chude.edit')
             ->with('chude', $chude);
     }
 
@@ -90,7 +90,7 @@ class ChuDeController extends Controller
         $chude->cd_ten = $request->input('cd_ten');
         $chude->save();
 
-        return redirect()->route('chude.index');
+        return redirect()->route('backend.chude.index');
     }
 
     /**
@@ -104,6 +104,6 @@ class ChuDeController extends Controller
         $chude = ChuDe::find($id);
         $chude->delete();
 
-        return redirect()->route('chude.index');
+        return redirect()->route('backend.chude.index');
     }
 }

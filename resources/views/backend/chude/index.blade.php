@@ -1,6 +1,20 @@
-<h1>Màn hình <span style="color: red;">danh sách Chủ đề</span></h1>
-<a href="{{ route('chude.create') }}">Thêm mới Chủ đề</a>
-<table border="1">
+@extends('backend.layout.master')
+
+@section('title')
+Danh sách Chủ đề
+@endsection
+
+@section('feature-title')
+Danh sách chủ đề    
+@endsection
+
+@section('feature-description')
+Danh sách các chủ đề có trong Hệ thống. Bạn có thể CRUD!
+@endsection
+
+@section('content')
+<a href="{{ route('chude.create') }}" class="btn btn-primary">Thêm mới Chủ đề</a>
+<table class="table table-striped table-bordered">
     <thead>
         <tr>
             <th>STT</th>
@@ -33,3 +47,4 @@
         @endforeach
     </tbody>
 </table>
+@endsection

@@ -28,12 +28,12 @@ Route::get('/danhsachloai/taomoi', 'LoaiController@taomoi');
 // });
 
 
-Route::get('/chude', 'ChuDeController@index')->name('chude.index');
-Route::get('/chude/create', 'ChuDeController@create')->name('chude.create');
-Route::post('/chude/store', 'ChuDeController@store')->name('chude.store');
-Route::get('/chude/edit/{id}', 'ChuDeController@edit')->name('chude.edit');
-Route::put('/chude/update/{id}', 'ChuDeController@update')->name('chude.update');
-Route::delete('/chude/delete/{id}', 'ChuDeController@destroy')->name('chude.destroy');
+Route::get('/admin/chude', 'ChuDeController@index')->name('chude.index');
+Route::get('/admin/chude/create', 'ChuDeController@create')->name('chude.create');
+Route::post('/admin/chude/store', 'ChuDeController@store')->name('chude.store');
+Route::get('/admin/chude/edit/{id}', 'ChuDeController@edit')->name('chude.edit');
+Route::put('/admin/chude/update/{id}', 'ChuDeController@update')->name('chude.update');
+Route::delete('/admin/chude/delete/{id}', 'ChuDeController@destroy')->name('chude.destroy');
 
 // Các route dành riêng cho backend
 Route::get('/admin/', 'BackendController@dashboard')->name('backend.dashboard');
