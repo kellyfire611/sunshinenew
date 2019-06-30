@@ -11,7 +11,10 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 
-    <title>Hello, world!</title>
+    <title>Sunshine | @yield('title')</title>
+
+    <!-- Các custom style dành riêng cho từng view -->
+    @yield('custom-css')
   </head>
   <body>
     <!-- Navbar -->
@@ -109,13 +112,13 @@
 
             <!-- Content -->
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">@yield('feature-title')</h1>
+                    <small>@yield('feature-description')</small>
+                </div>
                 @yield('content')
             </main>
             <!-- End content -->
-
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                
-            </main>
         </div>
     </div>
     <!-- End main content -->
@@ -125,5 +128,8 @@
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/popperjs/popper.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+
+    <!-- Các custom script dành riêng cho từng view -->
+    @yield('custom-scripts')
   </body>
 </html>
