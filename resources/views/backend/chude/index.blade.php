@@ -13,7 +13,7 @@ Danh sách các chủ đề có trong Hệ thống. Bạn có thể CRUD!
 @endsection
 
 @section('content')
-<a href="{{ route('chude.create') }}" class="btn btn-primary">Thêm mới Chủ đề</a>
+<a href="{{ route('backend.chude.create') }}" class="btn btn-primary">Thêm mới Chủ đề</a>
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
@@ -33,11 +33,11 @@ Danh sách các chủ đề có trong Hệ thống. Bạn có thể CRUD!
             <td>{{ $chude->cd_ma }}</td>
             <td>{{ $chude->cd_ten }}</td>
             <td>
-                <a href="{{ route('chude.edit', ['id' => $chude->cd_ma]) }}">Sửa</a>
-                <form method="post" action="{{ route('chude.destroy', ['id' => $chude->cd_ma]) }}">
+                <a href="{{ route('backend.chude.edit', ['id' => $chude->cd_ma]) }}" class="btn btn-success">Sửa</a>
+                <form class="d-inline" method="post" action="{{ route('backend.chude.destroy', ['id' => $chude->cd_ma]) }}">
                     {{ csrf_field() }}
                     <input type="hidden" name="_method" value="DELETE" />
-                    <button>Xóa</button>
+                    <button class="btn btn-danger">Xóa</button>
                 </form>
             </td>
         </tr>
