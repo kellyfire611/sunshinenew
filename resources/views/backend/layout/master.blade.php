@@ -34,6 +34,7 @@
                     <h1 class="h2">@yield('feature-title')</h1>
                     <small>@yield('feature-description')</small>
                 </div>
+                @include('backend.layout.partials.flash-message')
                 @yield('content')
             </main>
             <!-- End content -->

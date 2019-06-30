@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\ChuDe;
+use Session;
 
 class ChuDeController extends Controller
 {
@@ -49,6 +50,7 @@ class ChuDeController extends Controller
         $cd->cd_trangThai = 2;
         $cd->save();
 
+        Session::flash('alert-warning', 'Thêm mới thành công ^^~!!!');
         return redirect()->route('backend.chude.index');
     }
 
