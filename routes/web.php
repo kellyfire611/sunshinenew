@@ -34,3 +34,6 @@ Route::post('/chude/store', 'ChuDeController@store')->name('chude.store');
 Route::get('/chude/edit/{id}', 'ChuDeController@edit')->name('chude.edit');
 Route::put('/chude/update/{id}', 'ChuDeController@update')->name('chude.update');
 Route::delete('/chude/delete/{id}', 'ChuDeController@destroy')->name('chude.destroy');
+
+// Các route dành riêng cho backend
+Route::get('/admin/', 'BackendController@dashboard')->name('backend.dashboard');
