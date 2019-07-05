@@ -37,3 +37,10 @@ Route::delete('/admin/chude/delete/{id}', 'ChuDeController@destroy')->name('back
 
 // Các route dành riêng cho backend
 Route::get('/admin/', 'BackendController@dashboard')->name('backend.dashboard');
+
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+// Gọi hàm đăng ký các route dành cho Quản lý Xác thực tài khoản (Đăng nhập, Đăng xuất, Đăng ký)
+// các route trong file `vendor\laravel\framework\src\Illuminate\Routing\Router.php`, hàm auth()
+Auth::routes();
