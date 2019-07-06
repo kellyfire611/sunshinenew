@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\SanPham;
+use App\Loai;
 
 class SanPhamController extends Controller
 {
@@ -33,7 +34,15 @@ class SanPhamController extends Controller
      */
     public function create()
     {
-        //
+        // Sử dụng Eloquent Model để truy vấn dữ liệu
+        $ds_loai = Loai::all(); // SELECT * FROM loai
+
+        // Đường dẫn đến view được quy định như sau: <FolderName>.<ViewName>
+        // Mặc định đường dẫn gốc của method view() là thư mục `resources/views`
+        // Hiển thị view `backend.sanpham.create`
+        return view('backend.sanpham.create')
+            // với dữ liệu truyền từ Controller qua View, được đặt tên là `danhsachloai`
+            ->with('danhsachloai', $ds_loai);
     }
 
     /**
