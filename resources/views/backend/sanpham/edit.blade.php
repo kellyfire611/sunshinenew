@@ -15,6 +15,7 @@ Sửa Sản phẩm. Vui lòng nhập thông tin và bấm Lưu.
 @section('content')
 <form method="post" action="{{ route('backend.sanpham.update', ['id' => $sp->sp_ma]) }}" enctype="multipart/form-data">
     {{ csrf_field() }}
+    <input type="hidden" name="_method" value="PUT" />
     <div class="form-group">
         <label for="l_ma">Loại sản phẩm</label>
         <select name="l_ma" class="form-control">
@@ -33,7 +34,7 @@ Sửa Sản phẩm. Vui lòng nhập thông tin và bấm Lưu.
     </div>
     <div class="form-group">
         <label for="sp_giaGoc">Giá gốc</label>
-        <input type="number" class="form-control" id="sp_giaGoc" name="sp_giaGoc" value="{{ old('sp_giaGoc', $sp->giaGoc) }}">
+        <input type="number" class="form-control" id="sp_giaGoc" name="sp_giaGoc" value="{{ old('sp_giaGoc', $sp->sp_giaGoc) }}">
     </div>
     <div class="form-group">
         <label for="sp_giaGoc">Giá bán</label>
