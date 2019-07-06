@@ -115,3 +115,6 @@
     } 
 }
 
+table {
+    border-collapse: collapse;
+}
