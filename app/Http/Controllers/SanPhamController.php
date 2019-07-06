@@ -100,7 +100,12 @@ class SanPhamController extends Controller
      */
     public function edit($id)
     {
-        //
+        $sp = SanPham::where("sp_ma", $id)->first();
+        $ds_loai = Loai::all();
+
+        return view('backend.sanpham.edit')
+            ->with('sp', $sp)
+            ->with('danhsachloai', $ds_loai);
     }
 
     /**
