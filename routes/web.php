@@ -38,9 +38,21 @@ Route::delete('/admin/chude/delete/{id}', 'ChuDeController@destroy')->name('back
 // Các route dành riêng cho backend
 Route::get('/admin/', 'BackendController@dashboard')->name('backend.dashboard');
 
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index');
 
 // Gọi hàm đăng ký các route dành cho Quản lý Xác thực tài khoản (Đăng nhập, Đăng xuất, Đăng ký)
 // các route trong file `vendor\laravel\framework\src\Illuminate\Routing\Router.php`, hàm auth()
-Auth::routes();
+// Auth::routes();
+
+// Xác thực Routes...
+Route::get('/admin/login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('/admin/login', 'Auth\LoginController@login');
+Route::post('/admin/logout', 'Auth\LoginController@logout')->name('logout');
+// Đăng ký Routes...
+Route::get('/admin/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('/admin/register', 'Auth\RegisterController@register');
+// Quên mật khẩu Routes...
+Route::get('/admin/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('/admin/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('/admin/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('/admin/password/reset', 'Auth\ResetPasswordController@reset');

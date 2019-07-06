@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -43,102 +44,43 @@ class LoginController extends Controller
      */
     public function username(){
         return 'nv_taiKhoan';
-    }
+    }  
 
     /**
-     * Hàm trả về tên cột dùng để tim `Mật khẩu`
-     */
-    public function getAuthPassword()
-    {
-        return 'nv_matKhau';
-    }
-
-    /**
-     * Get the token value for the "remember me" session.
+     * Get the needed authorization credentials from the request.
      *
-     * @return string|null
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
      */
-    public function getRememberToken()
+    protected function credentials(Request $request)
     {
-        if (! empty($this->getRememberTokenName())) {
-            return (string) $this->{$this->getRememberTokenName()};
-        }
+        $cred = $request->only($this->username(), 'nv_matKhau');
+        return $cred;
     }
 
     /**
-     * Set the token value for the "remember me" session.
-     *
-     * @param  string  $value
-     * @return void
+     * Hàm dùng để Kiểm tra tính hợp lệ của dữ liệu (VALIDATE) khi Xác thực tài khoản
      */
-    public function setRememberToken($value)
-    {
-        if (! empty($this->getRememberTokenName())) {
-            $this->{$this->getRememberTokenName()} = $value;
-        }
-    }
-
-    /**
-     * Get the column name for the "remember me" token.
-     *
-     * @return string
-     */
-    public function getRememberTokenName()
-    {
-        return $this->rememberTokenName;
-    }
-
     protected function validateLogin(Request $request)
     {
         $this->validate($request, [
-            $this->username() => 'required|string',
-            'nv_matKhau' => 'required|string',
+            $this->username() => 'required|string', // tên tài khoản bắt buộc nhập
+            'nv_matKhau' => 'required|string',      // mật khẩu bắt buộc nhập
         ]);
     }
 
-    public function login(Request $request)
+    /**
+     * Attempt to log the user into the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return bool
+     */
+    protected function attemptLogin(Request $request)
     {
-        $this->validateLogin($request);
-
-        // If the class is using the ThrottlesLogins trait, we can automatically throttle
-        // the login attempts for this application. We'll key this by the username and
-        // the IP address of the client making these requests into this application.
-        if ($this->hasTooManyLoginAttempts($request)) {
-            $this->fireLockoutEvent($request);
-
-            return $this->sendLockoutResponse($request);
-        }
-
-        if ($this->attemptLogin($request)) {
-            return $this->sendLoginResponse($request);
-        }
-
-        // If the login attempt was unsuccessful we will increment the number of attempts
-        // to login and redirect the user back to the login form. Of course, when this
-        // user surpasses their maximum number of attempts they will get locked out.
-        $this->incrementLoginAttempts($request);
-
-        return $this->sendFailedLoginResponse($request);
-    }
-
-    function checklogin(Request $request){
-
-        $this->validate($request, [
-            'input-email' => 'required', 
-            'input-password' => 'required',
-        ]);
-
-        $user_data = array(
-            'gf_email'  => $request->get('input-email'),
-            'password' => $request->get('input-password')
+        // dd($request->filled('remember'));
+        $a = $this->guard()->attempt(
+            $this->credentials($request), $request->filled('remember')
         );
-
-        if(!Auth::attempt($user_data)){
-            return redirect('users');
-        }
-
-        if ( Auth::check() ) {
-            return redirect('users/details');
-        }
+        dd($a, 'dfdsfs');
     }
 }

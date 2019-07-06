@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Nhanvien;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Carbon\Carbon;
 
 class RegisterController extends Controller
 {
@@ -48,9 +49,14 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'nv_taiKhoan' => 'required|string|max:50|unique:cusc_nhanvien',
+            'nv_matKhau' => 'required|string|min:6|confirmed',
+            'nv_hoTen' => 'required|string|max:100',
+            'nv_gioiTinh' => 'required',
+            'nv_email' => 'required|string|email|max:100',
+            'nv_ngaySinh' => 'required',
+            'nv_diaChi' => 'required',
+            'nv_dienThoai' => 'required'
         ]);
     }
 
@@ -58,14 +64,24 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \App\Nhanvien
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+        dd($data, bcrypt($data['nv_matKhau']));
+        return Nhanvien::create([
+            'nv_taiKhoan' => $data['nv_taiKhoan'],
+            'nv_matKhau' => bcrypt($data['nv_matKhau']),
+            'nv_hoTen' => $data['nv_hoTen'],
+            'nv_gioiTinh' => $data['nv_gioiTinh'],
+            'nv_email' => $data['nv_email'],
+            'nv_ngaySinh' => $data['nv_ngaySinh'],
+            'nv_diaChi' => $data['nv_diaChi'],
+            'nv_dienThoai' => $data['nv_dienThoai'],
+            'nv_taoMoi' => Carbon::now(), // Lấy ngày giờ hiện tại (sử dụng Carbon)
+            'nv_capNhat' => Carbon::now(), // Lấy ngày giờ hiện tại (sử dụng Carbon)
+            'nv_trangThai' => 2, // Mặc định là 2-Khả dụng
+            'q_ma' => 2, // Mặc định là 2-Quản trị
         ]);
     }
 }
