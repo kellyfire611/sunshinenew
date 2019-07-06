@@ -33,7 +33,7 @@ Danh sách các Sản phẩm có trong Hệ thống. Bạn có thể CRUD!
             <td>{{ $loop->index + 1 }}</td>
             <td>{{ $sp->sp_ten }}</td>
             <td>{{ $sp->sp_giaGoc }}</td>
-            <td>{{ $sp->l_ma }}</td>
+            <td>{{ $sp->loaisanpham->l_ten }}</td>
             <td>
                 <a href="{{ route('backend.sanpham.edit', ['id' => $sp->sp_ma]) }}" class="btn btn-success">Sửa</a>
                 <form class="d-inline" method="post" action="{{ route('backend.sanpham.destroy', ['id' => $sp->sp_ma]) }}">
