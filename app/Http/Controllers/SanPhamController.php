@@ -156,6 +156,16 @@ class SanPhamController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sp = SanPham::where("sp_ma",  $id)->first();
+        if(empty($sp) == false)
+        {
+            // Xóa hình cũ để tránh rác
+            Storage::delete('public/photos/' . $sp->sp_hinh);
+        }
+
+        $sp->delete();
+
+        Session::flash('alert-info', 'Xóa sản phẩm thành công ^^~!!!');
+        return redirect()->route('backend.sanpham.index');
     }
 }
