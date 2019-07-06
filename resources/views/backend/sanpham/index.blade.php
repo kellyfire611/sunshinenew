@@ -18,6 +18,7 @@ Danh sách các Sản phẩm có trong Hệ thống. Bạn có thể CRUD!
     <thead>
         <tr>
             <th>STT</th>
+            <th>Hình</th>
             <th>Mã sản phẩm</th>
             <th>Giá gốc</th>
             <th>Loại sản phẩm</th>
@@ -31,6 +32,9 @@ Danh sách các Sản phẩm có trong Hệ thống. Bạn có thể CRUD!
         @foreach($danhsachsanpham as $sp)
         <tr>
             <td>{{ $loop->index + 1 }}</td>
+            <td>
+                <img src="{{ asset('storage/photos/' . $sp->sp_hinh) }}" class="sanpham-thumbnail" />
+            </td>
             <td>{{ $sp->sp_ten }}</td>
             <td>{{ $sp->sp_giaGoc }}</td>
             <td>{{ $sp->loaisanpham->l_ten }}</td>
