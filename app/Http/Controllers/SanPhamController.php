@@ -168,4 +168,16 @@ class SanPhamController extends Controller
         Session::flash('alert-info', 'Xóa sản phẩm thành công ^^~!!!');
         return redirect()->route('backend.sanpham.index');
     }
+
+    public function print() {
+        $ds_sanpham = Sanpham::all();
+        $ds_loai    = Loai::all();
+        $data = [
+            'danhsachsanpham' => $ds_sanpham,
+            'danhsachloai'    => $ds_loai,
+        ];
+        return view('backend.sanpham.print')
+            ->with('danhsachsanpham', $ds_sanpham)
+            ->with('danhsachloai', $ds_loai);
+    }
 }

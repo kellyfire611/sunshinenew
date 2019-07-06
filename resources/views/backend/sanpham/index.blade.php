@@ -14,6 +14,7 @@ Danh sách các Sản phẩm có trong Hệ thống. Bạn có thể CRUD!
 
 @section('content')
 <a href="{{ route('backend.sanpham.create') }}" class="btn btn-primary">Thêm mới Sản phẩm</a>
+<a href="{{ route('backend.sanpham.print') }}" class="btn btn-success">In danh sách Sản phẩm</a>
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
