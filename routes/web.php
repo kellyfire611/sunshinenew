@@ -43,6 +43,7 @@ Route::get('/admin/sanpham/edit/{id}', 'SanPhamController@edit')->name('backend.
 Route::put('/admin/sanpham/update/{id}', 'SanPhamController@update')->name('backend.sanpham.update');
 Route::delete('/admin/sanpham/delete/{id}', 'SanPhamController@destroy')->name('backend.sanpham.destroy');
 Route::get('/admin/sanpham/print', 'SanPhamController@print')->name('backend.sanpham.print');
+Route::get('/admin/sanpham/pdf', 'SanPhamController@pdf')->name('backend.sanpham.pdf');
 
 
 // Các route dành riêng cho backend

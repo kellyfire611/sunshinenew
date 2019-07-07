@@ -180,4 +180,8 @@ class SanPhamController extends Controller
             ->with('danhsachsanpham', $ds_sanpham)
             ->with('danhsachloai', $ds_loai);
     }
+
+    public function pdf() {
+        
+    }
 }
