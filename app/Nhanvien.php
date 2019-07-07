@@ -100,6 +100,5 @@ class Nhanvien extends Model implements
     public function setPasswordAttribute($value)
     {
         $this->attributes['nv_matKhau'] = bcrypt($value);
-        dd($this->nv_matKhau);
     }
 }

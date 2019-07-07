@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/admin'; // Sau khi đăng ký xong sẽ tự động đăng nhập và chuyển về trang /admin
 
     /**
      * Create a new controller instance.
@@ -70,7 +70,7 @@ class RegisterController extends Controller
     {
         return Nhanvien::create([
             'nv_taiKhoan' => $data['nv_taiKhoan'],
-            'nv_matKhau' => bcrypt($data['nv_matKhau']),
+            'nv_matKhau' => bcrypt($data['nv_matKhau']), //123456
             'nv_hoTen' => $data['nv_hoTen'],
             'nv_gioiTinh' => $data['nv_gioiTinh'],
             'nv_email' => $data['nv_email'],
