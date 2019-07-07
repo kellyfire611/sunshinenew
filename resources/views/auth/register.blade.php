@@ -97,7 +97,7 @@
                         </div>
                         <!-- Ngày sinh -->
                         <div class="form-group{{ $errors->has('nv_ngaySinh') ? ' has-error' : '' }}">
-                            <label for="nv_ngaySinh" class="col-md-4 control-label">Email</label>
+                            <label for="nv_ngaySinh" class="col-md-4 control-label">Ngày sinh</label>
 
                             <div class="col-md-6">
                                 <input id="nv_ngaySinh" type="text" class="form-control" name="nv_ngaySinh" value="{{ old('nv_ngaySinh') }}" required autofocus>

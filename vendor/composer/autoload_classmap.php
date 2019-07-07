@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Auth\\CustomUserProvider' => $baseDir . '/app/Http/Controllers/Auth/CustomUserProvider.php',
     'App\\Chitietdonhang' => $baseDir . '/app/Chitietdonhang.php',
     'App\\Chitietnhap' => $baseDir . '/app/Chitietnhap.php',
     'App\\ChuDe' => $baseDir . '/app/ChuDe.php',

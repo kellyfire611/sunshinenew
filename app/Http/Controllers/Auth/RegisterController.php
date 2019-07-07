@@ -68,7 +68,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        dd($data, bcrypt($data['nv_matKhau']));
         return Nhanvien::create([
             'nv_taiKhoan' => $data['nv_taiKhoan'],
             'nv_matKhau' => bcrypt($data['nv_matKhau']),

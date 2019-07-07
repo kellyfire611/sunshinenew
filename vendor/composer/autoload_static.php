@@ -370,6 +370,7 @@ class ComposerStaticInit766ed0f9b6dd88993af2413139d3cafb
     );
 
     public static $classMap = array (
+        'App\\Auth\\CustomUserProvider' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/CustomUserProvider.php',
         'App\\Chitietdonhang' => __DIR__ . '/../..' . '/app/Chitietdonhang.php',
         'App\\Chitietnhap' => __DIR__ . '/../..' . '/app/Chitietnhap.php',
         'App\\ChuDe' => __DIR__ . '/../..' . '/app/ChuDe.php',

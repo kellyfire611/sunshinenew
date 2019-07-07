@@ -350,7 +350,6 @@ class SessionGuard implements StatefulGuard, SupportsBasicAuth
         $this->fireAttemptEvent($credentials, $remember);
 
         $this->lastAttempted = $user = $this->provider->retrieveByCredentials($credentials);
-        dd($this->provider, $this->provider->retrieveByCredentials($credentials));
 
         // If an implementation of UserInterface was returned, we'll ask the provider
         // to validate the user against the given credentials, and if they are in
@@ -360,7 +359,6 @@ class SessionGuard implements StatefulGuard, SupportsBasicAuth
 
             return true;
         }
-        dd($user, $credentials);
 
         // If the authentication attempt fails we will fire an event so that the user
         // may be notified of any suspicious attempts to access their account from

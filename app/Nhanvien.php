@@ -56,7 +56,7 @@ class Nhanvien extends Model implements
      */
     public function getAuthPassword()
     {
-        return 'nv_matKhau';
+        return $this->nv_matKhau;
     }
 
     /**
@@ -95,5 +95,11 @@ class Nhanvien extends Model implements
     public function getRememberTokenName()
     {
         return $this->rememberTokenName;
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['nv_matKhau'] = bcrypt($value);
+        dd($this->nv_matKhau);
     }
 }

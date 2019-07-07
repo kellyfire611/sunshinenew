@@ -77,10 +77,8 @@ class LoginController extends Controller
      */
     protected function attemptLogin(Request $request)
     {
-        // dd($request->filled('remember'));
         $a = $this->guard()->attempt(
             $this->credentials($request), $request->filled('remember')
         );
-        dd($a, 'dfdsfs');
     }
 }

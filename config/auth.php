@@ -73,7 +73,7 @@ return [
 
         // Thay thế việc Xác thực tài khoản bằng model `Nhanvien`
         'users' => [
-            'driver' => 'eloquent',
+            'driver' => 'custom',
             'model' => App\Nhanvien::class,
         ],
 
