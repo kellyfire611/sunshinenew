@@ -11,6 +11,13 @@
 |
 */
 
+Route::get('setLocale/{locale}', function ($locale) {
+    if (in_array($locale, Config::get('app.locales'))) {
+      Session::put('locale', $locale);
+    }
+    return redirect()->back();
+})->name('app.setLocale');
+
 Route::get('/', function () {
     return view('welcome');
 });

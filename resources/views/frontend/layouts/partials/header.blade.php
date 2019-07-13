@@ -17,8 +17,12 @@
                         My Account
                     </a>
 
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
+                    <a href="{{ route('app.setLocale', ['locale' => 'en']) }}" class="flex-c-m trans-04 p-lr-25">
                         EN
+                    </a>
+
+                    <a href="{{ route('app.setLocale', ['locale' => 'vi']) }}" class="flex-c-m trans-04 p-lr-25">
+                        VI
                     </a>
 
                     <a href="#" class="flex-c-m trans-04 p-lr-25">
@@ -42,7 +46,7 @@
                         <li class="{{ Request::is('') ? 'active-menu' : '' }}">
                             <a href="{{ route('frontend.home') }}">Trang chủ</a>
                         </li>
-                        
+
                         <li class="{{ Request::is('san-pham') ? 'active-menu' : '' }}">
                             <a href="{{ route('frontend.product') }}">Sản phẩm</a>
                         </li>
