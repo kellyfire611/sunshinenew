@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\ChuDe;
 use Session;
+use Validator;
 
 class ChuDeController extends Controller
 {
@@ -44,6 +45,21 @@ class ChuDeController extends Controller
         // var_dump();die;
         // print_r();die;
         // dd($request); //Dump and die
+
+        // Kiểm tra ràng buộc dữ liệu (validation)
+        $validator = Validator::make($request->all(), [
+            'cd_ten' => 'required|min:3|max:50|unique:cusc_chude',
+        ]);
+
+        // Nếu kiểm tra ràng buộc dữ liệu thất bại -> tức là dữ liệu không hợp lệ
+        // Chuyển hướng về view "Thêm mới" với,
+        // - Thông báo lỗi vi phạm các quy luật.
+        // - Dữ liệu cũ (người dùng đã nhập).
+        if ($validator->fails()) {
+            return redirect(route('backend.chude.create'))
+                        ->withErrors($validator)
+                        ->withInput();
+        }
 
         $cd = new ChuDe();
         $cd->cd_ten = $request->input('cd_ten');
