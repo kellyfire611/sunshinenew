@@ -33,7 +33,7 @@ Thêm mới Chủ đề. Vui lòng nhập thông tin và bấm Lưu.
                     required: true,
                     minlength: 3,
                     maxlength: 50
-                },
+                }
             },
             messages: {
                 cd_ten: {

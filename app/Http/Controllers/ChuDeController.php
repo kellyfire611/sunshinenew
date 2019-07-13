@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\ChuDe;
 use Session;
 use Validator;
+use App\Http\Requests\ChuDeCreateRequest;
 
 class ChuDeController extends Controller
 {
@@ -40,26 +41,26 @@ class ChuDeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ChuDeCreateRequest $request)
     {
         // var_dump();die;
         // print_r();die;
         // dd($request); //Dump and die
 
-        // Kiểm tra ràng buộc dữ liệu (validation)
-        $validator = Validator::make($request->all(), [
-            'cd_ten' => 'required|min:3|max:50|unique:cusc_chude',
-        ]);
+        // // Kiểm tra ràng buộc dữ liệu (validation)
+        // $validator = Validator::make($request->all(), [
+        //     'cd_ten' => 'required|min:3|max:50|unique:cusc_chude', //tên table
+        // ]);
 
-        // Nếu kiểm tra ràng buộc dữ liệu thất bại -> tức là dữ liệu không hợp lệ
-        // Chuyển hướng về view "Thêm mới" với,
-        // - Thông báo lỗi vi phạm các quy luật.
-        // - Dữ liệu cũ (người dùng đã nhập).
-        if ($validator->fails()) {
-            return redirect(route('backend.chude.create'))
-                        ->withErrors($validator)
-                        ->withInput();
-        }
+        // // Nếu kiểm tra ràng buộc dữ liệu thất bại -> tức là dữ liệu không hợp lệ
+        // // Chuyển hướng về view "Thêm mới" với,
+        // // - Thông báo lỗi vi phạm các quy luật.
+        // // - Dữ liệu cũ (người dùng đã nhập).
+        // if ($validator->fails()) {
+        //     return redirect(route('backend.chude.create'))
+        //                 ->withErrors($validator)
+        //                 ->withInput();
+        // }
 
         $cd = new ChuDe();
         $cd->cd_ten = $request->input('cd_ten');
