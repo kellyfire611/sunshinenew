@@ -78,3 +78,4 @@ Route::post('/admin/password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('/', 'Frontend\FrontendController@index')->name('frontend.home');
 Route::get('/lien-he', 'Frontend\FrontendController@contact')->name('frontend.contact');
 Route::post('/lien-he/goi-loi-nhan', 'Frontend\FrontendController@sendMailContactForm')->name('frontend.contact.sendMailContactForm');
+Route::get('/gioi-thieu', 'Frontend\FrontendController@about')->name('frontend.about');

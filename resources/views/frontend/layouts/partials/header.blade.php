@@ -56,7 +56,7 @@
                         </li>
 
                         <li class="{{ Request::is('gioi-thieu') ? 'active-menu' : '' }}">
-                            <a href="">About</a>
+                            <a href="{{ route('frontend.about') }}">About</a>
                         </li>
 
                         <li class="{{ Request::is('lien-he') ? 'active-menu' : '' }}">

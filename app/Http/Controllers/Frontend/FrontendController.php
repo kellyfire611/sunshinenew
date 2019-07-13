@@ -39,12 +39,21 @@ class FrontendController extends Controller
     /** 
      * Action gởi email với các lời nhắn nhận được từ khách hàng 
      * POST /lien-he/goi-loi-nhan 
-     */ 
+     */
     public function sendMailContactForm(Request $request)
     {
         $input = $request->all();
         Mail::to('hotro.nentangtoituonglai@gmail.com')->send(new ContactMailer($input));
         return $input;
+    }
+
+    /**
+     * Action hiển thị view Giới thiệu
+     * GET /about
+     */
+    public function about()
+    {
+        return view('frontend.pages.about');
     }
 
     /**
