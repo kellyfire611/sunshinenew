@@ -13,7 +13,7 @@ Giới thiệu Shop Hoa tươi - Sunshine
 {{-- Thay thế nội dung vào Placeholder `main-content` của view `frontend.layouts.master` --}}
 @section('main-content')
 <!-- Title page -->
-<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('{{ asset('theme/cozastore/images/bg-01.jpg') }}');">
+<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('{{ asset('themes/cozastore/images/bg-01.jpg') }}');">
     <h2 class="ltext-105 cl0 txt-center">
         About
     </h2>
@@ -60,7 +60,7 @@ Giới thiệu Shop Hoa tươi - Sunshine
             <div class="col-11 col-md-5 col-lg-4 m-lr-auto">
                 <div class="how-bor1 ">
                     <div class="hov-img0">
-                        <img src="{{ asset('theme/cozastore/images/about-01.jpg') }}" alt="IMG">
+                        <img src="{{ asset('themes/cozastore/images/about-01.jpg') }}" alt="IMG">
                     </div>
                 </div>
             </div>
@@ -102,7 +102,7 @@ Giới thiệu Shop Hoa tươi - Sunshine
             <div class="order-md-1 col-11 col-md-5 col-lg-4 m-lr-auto p-b-30">
                 <div class="how-bor2">
                     <div class="hov-img0">
-                        <img src="{{ asset('theme/cozastore/images/about-02.jpg') }}" alt="IMG">
+                        <img src="{{ asset('themes/cozastore/images/about-02.jpg') }}" alt="IMG">
                     </div>
                 </div>
             </div>

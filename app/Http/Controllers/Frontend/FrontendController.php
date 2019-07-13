@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Frontend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Loai;
+use App\Mau;
+use App\Sanpham;
 use DB;
 use Mail;
 use App\Mail\ContactMailer;
@@ -24,10 +26,25 @@ class FrontendController extends Controller
 
         // Query tìm danh sách sản phẩm
         $danhsachsanpham = $this->searchSanPham($request);
+
+        // Query Lấy các hình ảnh liên quan của các Sản phẩm đã được lọc
+        $danhsachhinhanhlienquan = DB::table('cusc_hinhanh')
+            ->whereIn('sp_ma', $danhsachsanpham->pluck('sp_ma')->toArray())
+            ->get();
+
+        // Query danh sách Loại
+        $danhsachloai = Loai::all();
+
+        // Query danh sách màu
+        $danhsachmau = Mau::all();
+
         // Hiển thị view `frontend.index` với dữ liệu truyền vào
         return view('frontend.index')
             ->with('ds_top3_newest_loaisanpham', $ds_top3_newest_loaisanpham)
-            ->with('danhsachsanpham', $danhsachsanpham);
+            ->with('danhsachsanpham', $danhsachsanpham)
+            ->with('danhsachhinhanhlienquan', $danhsachhinhanhlienquan)
+            ->with('danhsachmau', $danhsachmau)
+            ->with('danhsachloai', $danhsachloai);
     }
 
     /** * Action hiển thị view Liên hệ * GET /contact */
@@ -54,6 +71,58 @@ class FrontendController extends Controller
     public function about()
     {
         return view('frontend.pages.about');
+    }
+
+    /**
+     * Action hiển thị danh sách Sản phẩm
+     */
+    public function product(Request $request)
+    {
+        // Query tìm danh sách sản phẩm
+        $danhsachsanpham = $this->searchSanPham($request);
+
+        // Query Lấy các hình ảnh liên quan của các Sản phẩm đã được lọc
+        $danhsachhinhanhlienquan = DB::table('cusc_hinhanh')
+            ->whereIn('sp_ma', $danhsachsanpham->pluck('sp_ma')->toArray())
+            ->get();
+
+        // Query danh sách Loại
+        $danhsachloai = Loai::all();
+
+        // Query danh sách màu
+        $danhsachmau = Mau::all();
+
+        // Hiển thị view `frontend.index` với dữ liệu truyền vào
+        return view('frontend.pages.product')
+            ->with('danhsachsanpham', $danhsachsanpham)
+            ->with('danhsachhinhanhlienquan', $danhsachhinhanhlienquan)
+            ->with('danhsachmau', $danhsachmau)
+            ->with('danhsachloai', $danhsachloai);
+    }
+
+    /**
+     * Action hiển thị chi tiết Sản phẩm
+     */
+    public function productDetail(Request $request, $id)
+    {
+        $sanpham = SanPham::find($id);
+
+        // Query Lấy các hình ảnh liên quan của các Sản phẩm đã được lọc
+        $danhsachhinhanhlienquan = DB::table('cusc_hinhanh')
+            ->where('sp_ma', $id)
+            ->get();
+
+        // Query danh sách Loại
+        $danhsachloai = Loai::all();
+
+        // Query danh sách màu
+        $danhsachmau = Mau::all();
+
+        return view('frontend.pages.product-detail')
+            ->with('sp', $sanpham)
+            ->with('danhsachhinhanhlienquan', $danhsachhinhanhlienquan)
+            ->with('danhsachmau', $danhsachmau)
+            ->with('danhsachloai', $danhsachloai);
     }
 
     /**
