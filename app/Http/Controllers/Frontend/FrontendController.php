@@ -10,6 +10,13 @@ use App\Sanpham;
 use DB;
 use Mail;
 use App\Mail\ContactMailer;
+use App\Vanchuyen;
+use App\Khachhang;
+use App\Donhang;
+use App\Thanhtoan;
+use App\Chitietdonhang;
+use Carbon\Carbon;
+use App\Mail\OrderMailer;
 
 class FrontendController extends Controller
 {
@@ -130,7 +137,97 @@ class FrontendController extends Controller
      */
     public function cart(Request $request)
     {
-        return view('frontend.pages.shopping-cart');
+        // Query danh sách hình thức vận chuyển
+        $danhsachvanchuyen = Vanchuyen::all();
+
+        // Query danh sách phương thức thanh toán
+        $danhsachphuongthucthanhtoan = Thanhtoan::all();
+
+        return view('frontend.pages.shopping-cart')
+            ->with('danhsachvanchuyen', $danhsachvanchuyen)
+            ->with('danhsachphuongthucthanhtoan', $danhsachphuongthucthanhtoan);
+    }
+    /**
+     * Action Đặt hàng
+     */
+    public function order(Request $request)
+    {
+        // dd($request);
+        // Data gởi mail
+        $dataMail = [];
+        try {
+            // Tạo mới khách hàng
+            $khachhang = new Khachhang();
+            $khachhang->kh_taiKhoan = $request->khachhang['kh_taiKhoan'];
+            $khachhang->kh_matKhau = bcrypt('123456');
+            $khachhang->kh_hoTen = $request->khachhang['kh_hoTen'];
+            $khachhang->kh_gioiTinh = $request->khachhang['kh_gioiTinh'];
+            $khachhang->kh_email = $request->khachhang['kh_email'];
+            $khachhang->kh_ngaySinh = $request->khachhang['kh_ngaySinh'];
+            if (!empty($request->khachhang['kh_diaChi'])) {
+                $khachhang->kh_diaChi = $request->khachhang['kh_diaChi'];
+            }
+            if (!empty($request->khachhang['kh_dienThoai'])) {
+                $khachhang->kh_dienThoai = $request->khachhang['kh_dienThoai'];
+            }
+            $khachhang->kh_trangThai = 2; // Khả dụng
+            $khachhang->save();
+            $dataMail['khachhang'] = $khachhang->toArray();
+            // Tạo mới đơn hàng
+            $donhang = new Donhang();
+            $donhang->kh_ma = $khachhang->kh_ma;
+            $donhang->dh_thoiGianDatHang = Carbon::now();
+            $donhang->dh_thoiGianNhanHang = $request->donhang['dh_thoiGianNhanHang'];
+            $donhang->dh_nguoiNhan = $request->donhang['dh_nguoiNhan'];
+            $donhang->dh_diaChi = $request->donhang['dh_diaChi'];
+            $donhang->dh_dienThoai = $request->donhang['dh_dienThoai'];
+            $donhang->dh_nguoiGui = $request->donhang['dh_nguoiGui'];
+            $donhang->dh_loiChuc = $request->donhang['dh_loiChuc'];
+            $donhang->dh_daThanhToan = 0; //Chưa thanh toán
+            $donhang->nv_xuLy = 1; //Mặc định nhân viên đầu tiên
+            $donhang->nv_giaoHang = 1; //Mặc định nhân viên đầu tiên
+            $donhang->dh_trangThai = 1; //Nhận đơn
+            $donhang->vc_ma = $request->donhang['vc_ma'];
+            $donhang->tt_ma = $request->donhang['tt_ma'];
+            $donhang->save();
+            $dataMail['donhang'] = $donhang->toArray();
+            // Lưu chi tiết đơn hàng
+            foreach ($request->giohang['items'] as $sp) {
+                $chitietdonhang = new Chitietdonhang();
+                $chitietdonhang->dh_ma = $donhang->dh_ma;
+                $chitietdonhang->sp_ma = $sp['_id'];
+                $chitietdonhang->m_ma = 1;
+                $chitietdonhang->ctdh_soLuong = $sp['_quantity'];
+                $chitietdonhang->ctdh_donGia = $sp['_price'];
+                $chitietdonhang->save();
+                $dataMail['donhang']['chitiet'][] = $chitietdonhang->toArray();
+                $dataMail['donhang']['giohang'][] = $sp;
+            }
+            // Gởi mail khách hàng
+            // dd($dataMail);
+            Mail::to($khachhang->kh_email)
+                ->send(new OrderMailer($dataMail));
+        } catch (ValidationException $e) {
+            return response()->json(array(
+                'code'  => 500,
+                'message' => $e,
+                'redirectUrl' => route('frontend.home')
+            ));
+        } catch (\Exception $e) {
+            throw $e;
+        }
+        return response()->json(array(
+            'code'  => 200,
+            'message' => 'Tạo đơn hàng thành công!',
+            'redirectUrl' => route('frontend.orderFinish')
+        ));
+    }
+    /**
+     * Action Hoàn tất Đặt hàng
+     */
+    public function orderFinish()
+    {
+        return view('frontend.pages.order-finish');
     }
 
     /**
