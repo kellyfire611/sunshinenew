@@ -84,6 +84,22 @@ class NhanvienTableSeeder extends Seeder {
                 }
             }
         }
+
+        // Admin
+        array_push($list, [
+            'nv_ma'        => 1,
+            'nv_taiKhoan'  => "admin",
+            'nv_matKhau'   => bcrypt('123456'),
+            'nv_hoTen'     => "Quản trị hệ thống",
+            'nv_gioiTinh'  => true,
+            'nv_email'     => "admin@nentang.vn",
+            'nv_ngaySinh'  => $today->format('Y-m-d H:i:s'),
+            'nv_diaChi'    => "130 Xô Viết Nghệ Tỉnh, Quận Ninh Kiều, TP Cần Thơ",
+            'nv_dienThoai' => "0915659223",
+            'nv_taoMoi'    => $today->format('Y-m-d H:i:s'),
+            'nv_capNhat'   => $today->format('Y-m-d H:i:s'),
+            'q_ma'         => 2
+        ]);
         DB::table('cusc_nhanvien')->insert($list);
     }
 }
