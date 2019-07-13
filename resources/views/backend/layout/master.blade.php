@@ -48,6 +48,10 @@
     <script src="{{ asset('vendor/popperjs/popper.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 
+    <!-- Thư viện Jquery validation -->
+    <script src="{{ asset('vendor/jquery-validation/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('vendor/jquery-validation/localization/messages_vi.min.js') }}"></script>
+
     <!-- Các custom script dành riêng cho từng view -->
     @yield('custom-scripts')
   </body>
