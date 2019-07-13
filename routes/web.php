@@ -76,3 +76,5 @@ Route::post('/admin/password/reset', 'Auth\ResetPasswordController@reset');
 
 // Các route dành riêng cho frontend
 Route::get('/', 'Frontend\FrontendController@index')->name('frontend.home');
+Route::get('/lien-he', 'Frontend\FrontendController@contact')->name('frontend.contact');
+Route::post('/lien-he/goi-loi-nhan', 'Frontend\FrontendController@sendMailContactForm')->name('frontend.contact.sendMailContactForm');

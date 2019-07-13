@@ -60,7 +60,7 @@
                         </li>
 
                         <li class="{{ Request::is('lien-he') ? 'active-menu' : '' }}">
-                            <a href="">Contact</a>
+                            <a href="{{ route('frontend.contact') }}">Contact</a>
                         </li>
                     </ul>
                 </div>

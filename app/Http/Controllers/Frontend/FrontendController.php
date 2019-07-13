@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Loai; 
+use App\Loai;
 use DB;
+use Mail;
+use App\Mail\ContactMailer;
 
 class FrontendController extends Controller
 {
@@ -27,6 +29,24 @@ class FrontendController extends Controller
             ->with('ds_top3_newest_loaisanpham', $ds_top3_newest_loaisanpham)
             ->with('danhsachsanpham', $danhsachsanpham);
     }
+
+    /** * Action hiển thị view Liên hệ * GET /contact */
+    public function contact()
+    {
+        return view('frontend.pages.contact');
+    }
+
+    /** 
+     * Action gởi email với các lời nhắn nhận được từ khách hàng 
+     * POST /lien-he/goi-loi-nhan 
+     */ 
+    public function sendMailContactForm(Request $request)
+    {
+        $input = $request->all();
+        Mail::to('hotro.nentangtoituonglai@gmail.com')->send(new ContactMailer($input));
+        return $input;
+    }
+
     /**
      * Hàm query danh sách sản phẩm theo nhiều điều kiện
      */
@@ -35,8 +55,7 @@ class FrontendController extends Controller
         $query = DB::table('cusc_sanpham')->select('*');
         // Kiểm tra điều kiện `searchByLoaiMa`
         $searchByLoaiMa = $request->query('searchByLoaiMa');
-        if ($searchByLoaiMa != null) {
-        }
+        if ($searchByLoaiMa != null) { }
 
         $data = $query->get();
         return $data;
