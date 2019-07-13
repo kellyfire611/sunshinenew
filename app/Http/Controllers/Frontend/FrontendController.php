@@ -126,6 +126,14 @@ class FrontendController extends Controller
     }
 
     /**
+     * Action hiển thị giỏ hàng
+     */
+    public function cart(Request $request)
+    {
+        return view('frontend.pages.shopping-cart');
+    }
+
+    /**
      * Hàm query danh sách sản phẩm theo nhiều điều kiện
      */
     private function searchSanPham(Request $request)

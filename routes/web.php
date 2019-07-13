@@ -82,3 +82,5 @@ Route::get('/gioi-thieu', 'Frontend\FrontendController@about')->name('frontend.a
 
 Route::get('/san-pham', 'Frontend\FrontendController@product')->name('frontend.product');
 Route::get('/san-pham/{id}', 'Frontend\FrontendController@productDetail')->name('frontend.productDetail');
+
+Route::get('/gio-hang', 'Frontend\FrontendController@cart')->name('frontend.cart');
