@@ -105,6 +105,21 @@ class KhachhangTableSeeder extends Seeder {
                 'kh_trangThai' => ($i <= $nCustomers-3? 2: 3)
             ]);
         }
+        // Admin
+        array_push($list, [
+            'kh_ma'        => $nCustomers+1,
+            'kh_taiKhoan'  => 'dnpcuong',
+            'kh_matKhau'   => bcrypt('123456'),
+            'kh_hoTen'     => 'Dương Nguyễn Phú Cường',
+            'kh_gioiTinh'  => $gender == VnBase::VnMale,
+            'kh_email'     => 'admin@nentang.vn',
+            'kh_ngaySinh'  => '1989-06-11',
+            'kh_diaChi'    => '130 Xô Viết Nghệ Tỉnh, Quận Ninh Kiều, TP Cần Thơ',
+            'kh_dienThoai' => '0915659223',
+            'kh_taoMoi'    => $today->format('Y-m-d H:i:s'),
+            'kh_capNhat'   => $today->format('Y-m-d H:i:s'),
+            'kh_trangThai' => 2 // Khả dụng
+        ]);
         DB::table('cusc_khachhang')->insert($list);
     }
 }

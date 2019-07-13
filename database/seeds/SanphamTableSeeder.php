@@ -24,7 +24,7 @@ class SanphamTableSeeder extends Seeder {
                 'sp_ten'                  => "sp_ten $i",
                 'sp_giaGoc'               => $i,
                 'sp_giaBan'               => $i,
-                'sp_hinh'                 => $faker->randomElements($photos)[0],
+                'sp_hinh'                 => "hoa-$i.jpg",
                 'sp_thongTin'             => "sp_thong $i",
                 'sp_danhGia'              => "sp_danhGia $i",
                 'sp_taoMoi'               => $today->format('Y-m-d H:i:s'),
