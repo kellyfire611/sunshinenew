@@ -27,9 +27,13 @@ class FrontendController extends Controller
     public function index(Request $request)
     {
         // Query top 3 loại sản phẩm (có sản phẩm) mới nhất
-        $ds_top3_newest_loaisanpham = DB::table('cusc_loai')
+        // Eloquent MODEL, Query Builder DB
+        $ds_top3_newest_loaisanpham = 
+            DB::table('cusc_loai')
             ->join('cusc_sanpham', 'cusc_loai.l_ma', '=', 'cusc_sanpham.l_ma')
-            ->orderBy('l_capNhat')->take(3)->get();
+            ->orderBy('l_capNhat')
+            ->take(3)
+            ->get();
 
         // Query tìm danh sách sản phẩm
         $danhsachsanpham = $this->searchSanPham($request);

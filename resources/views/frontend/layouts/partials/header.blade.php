@@ -51,7 +51,7 @@
                             <a href="{{ route('frontend.product') }}">Sản phẩm</a>
                         </li>
 
-                        <li class="{{ Request::is('gioi-thieu') ? 'active-menu' : '' }}">
+                        <li class="{{ Request::is('gioi-thieu') ? 'active-menu' :   '' }}">
                             <a href="{{ route('frontend.about') }}">About</a>
                         </li>
 

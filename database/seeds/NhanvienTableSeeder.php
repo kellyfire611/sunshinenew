@@ -87,7 +87,7 @@ class NhanvienTableSeeder extends Seeder {
 
         // Admin
         array_push($list, [
-            'nv_ma'        => 1,
+            'nv_ma'        => 100,
             'nv_taiKhoan'  => "admin",
             'nv_matKhau'   => bcrypt('123456'),
             'nv_hoTen'     => "Quản trị hệ thống",
