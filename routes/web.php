@@ -11,7 +11,8 @@
 |
 */
 
-
+// route Hiển thị màn hình hello 
+Route::get('/hello', 'ExampleController@hello')->name('example.hello');
 
 Route::get('setLocale/{locale}', function ($locale) {
     if (in_array($locale, Config::get('app.locales'))) {
