@@ -11,6 +11,8 @@
 |
 */
 
+
+
 Route::get('setLocale/{locale}', function ($locale) {
     if (in_array($locale, Config::get('app.locales'))) {
       Session::put('locale', $locale);
@@ -80,6 +82,7 @@ Route::post('/admin/password/email', 'Auth\ForgotPasswordController@sendResetLin
 Route::get('/admin/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('/admin/password/reset', 'Auth\ResetPasswordController@reset');
 
+Route::post('/admin/activate/{nv_ma}', 'BackendController@activate')->name('activate');
 
 // Các route dành riêng cho frontend
 // Namespace PHP

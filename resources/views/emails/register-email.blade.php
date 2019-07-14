@@ -16,4 +16,12 @@
         <th style="border-bottom: 1px solid black;border-right: 1px solid black;border-left: 1px solid black;text-align: right; padding: 5px;">Họ tên thành viên:</th>
         <td style="border-bottom: 1px solid black;border-right: 1px solid black; padding: 5px;">{!! $data['nv_hoTen'] !!}</td>
     </tr>
+    <tr>
+        <th style="border-bottom: 1px solid black;border-right: 1px solid black;border-left: 1px solid black;text-align: right; padding: 5px;">Link kích hoạt tài khoản:</th>
+        <td style="border-bottom: 1px solid black;border-right: 1px solid black; padding: 5px;">
+        <form class="d-inline" method="post" action="{{ route('activate', ['nv_ma' => $data['nv_ma']]) }}">
+            {{ csrf_field() }}
+            <button class="btn btn-danger">Click vào đây để kích hoạt tài khoản</button>
+        </form>
+    </tr>
 </table>
