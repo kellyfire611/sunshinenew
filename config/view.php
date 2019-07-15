@@ -14,7 +14,7 @@ return [
     */
 
     'paths' => [
-        resource_path('views'),
+        resource_path('views'), // Đường dẫn đến thư mục `resources/views`, có thể tùy biến thành thư mục khác nếu bạn muốn!
     ],
 
     /*
