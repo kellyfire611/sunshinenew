@@ -55,4 +55,5 @@ Danh sách các Sản phẩm có trong Hệ thống. Bạn có thể CRUD!
         @endforeach
     </tbody>
 </table>
+{{ $danhsachsanpham->links() }}
 @endsection
