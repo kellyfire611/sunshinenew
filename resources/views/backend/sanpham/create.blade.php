@@ -12,6 +12,18 @@ Thêm mới Sản phẩm
 Thêm mới Sản phẩm. Vui lòng nhập thông tin và bấm Lưu.
 @endsection
 
+@section('custom-css')
+<style>
+    .preview-upload {
+        border: 1px dashed red;
+        padding: 10px;
+    }
+    .preview-upload img {
+        width: 100%;
+    }
+</style>
+@endsection
+
 @section('content')
 <form method="post" action="{{ route('backend.sanpham.store') }}">
     {{ csrf_field() }}
@@ -43,6 +55,9 @@ Thêm mới Sản phẩm. Vui lòng nhập thông tin và bấm Lưu.
         <div class="file-loading">
             <label>Hình đại diện</label>
             <input id="sp_hinh" type="file" name="sp_hinh">
+            <div class="preview-upload">
+                <img id='sp_hinh-upload'/>
+            </div>
         </div>
     </div>
     <div class="form-group">
@@ -67,4 +82,24 @@ Thêm mới Sản phẩm. Vui lòng nhập thông tin và bấm Lưu.
     </select>
     <button class="btn btn-primary">Lưu</button>
 </form>
+@endsection
+
+@section('custom-scripts')
+<script>
+    // Sử dụng FileReader để đọc dữ liệu tạm trước khi upload lên Server
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#sp_hinh-upload').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    // Bắt sự kiện, ngay khi thay đổi file thì đọc lại nội dung và hiển thị lại hình ảnh mới trên khung preview-upload
+    $("#sp_hinh").change(function(){
+        readURL(this);
+    }); 
+</script>
 @endsection
