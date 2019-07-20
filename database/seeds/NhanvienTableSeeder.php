@@ -50,7 +50,7 @@ class NhanvienTableSeeder extends Seeder {
                 $birthdate= $uPI->Birthdate($birthYear);
                 $username = $uPI->Username($name, "", "", "", VnBase::VnLowerCase, VnBase::VnTrimShorthand, VnBase::VnTrue);
                 $email    = "$username@sunshine.com";
-                $password = md5($username."@".$birthYear);
+                $password = bcrypt($username."@".$birthYear);
                 $phone    = $uPI->Mobile("", VnBase::VnFalse);
                 $address  = $uPI->Address();
 

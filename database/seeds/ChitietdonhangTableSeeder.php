@@ -15,15 +15,16 @@ class ChitietdonhangTableSeeder extends Seeder {
         $list = [];
         $uFN = new VnFullname();
         $uPI = new VnPersonalInfo();
+        $faker = Faker\Factory::create();
 
-        for ($i=1; $i <= 3; $i++) {
+        for ($i=1; $i <= 100; $i++) {
             $today = new DateTime();
             array_push($list, [
-                'dh_ma'                   => $i,
-                'sp_ma'                   => $i,
-                'm_ma'                    => $i,
-                'ctdh_soLuong'            => $i,
-                'ctdh_donGia'             => $i
+                'dh_ma'                   => $faker->numberBetween(1, 15),
+                'sp_ma'                   => $faker->numberBetween(1, 30),
+                'm_ma'                    => $faker->numberBetween(1, 20),
+                'ctdh_soLuong'            => $faker->numberBetween(1, 20),
+                'ctdh_donGia'             => round($faker->randomFloat(99999999, 80000, 6500000), -3),
             ]);
         }
         DB::table('cusc_chitietdonhang')->insert($list);
