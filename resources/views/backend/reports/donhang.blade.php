@@ -215,6 +215,13 @@ Báo cáo Đơn hàng
                                     }
                                 }]
                             },
+                            tooltips: {
+                                callbacks: {
+                                    label: function(tooltipItem, data) {
+                                        return numeral(tooltipItem.value).format('0,0 $')
+                                    }
+                                }
+                            },
                             responsive: true,
                             maintainAspectRatio: false,
                         }
