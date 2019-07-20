@@ -49,6 +49,21 @@
                 </ul>
             </li>
             <!-- Menu Sản phẩm - End -->
+            <!-- Menu Báo cáo - Start -->
+            <li class="nav-item">
+                <a href="#baocaoSubMenu" data-toggle="collapse" aria-expanded="false" class="nav-link dropdown-toggle {{ (strpos(Route::currentRouteName(), 'backend.baocao') === 0) ? 'active' : '' }}">
+                    <span data-feather="package"></span> Báo cáo - Thống kê
+                </a>
+                <ul class="{{ (strpos(Route::currentRouteName(), 'backend.baocao') === 0) ? 'collapse show' : 'collapse' }}" id="baocaoSubMenu">
+                    <li class="nav-item">
+                        <a class="nav-link {{ (strpos(Route::currentRouteName(), 'backend.baocao.donhang') === 0) ? 'active' : '' }}" href="{{ route('backend.baocao.donhang') }}/">
+                            <span data-feather="list"></span>
+                            Đơn hàng
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- Menu Báo cáo - End -->
         </ul>
     </div>
 </nav>

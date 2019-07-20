@@ -61,6 +61,10 @@ Route::group(['middleware' => 'auth'], function()
     Route::delete('/admin/sanpham/delete/{id}', 'SanPhamController@destroy')->name('backend.sanpham.destroy');
     Route::get('/admin/sanpham/print', 'SanPhamController@print')->name('backend.sanpham.print');
     Route::get('/admin/sanpham/pdf', 'SanPhamController@pdf')->name('backend.sanpham.pdf');
+
+    // Tạo route Báo cáo Đơn hàng 
+    Route::get('/admin/baocao/donhang', 'Backend\BaoCaoController@donhang')->name('backend.baocao.donhang'); 
+    Route::get('/admin/baocao/donhang/data', 'Backend\BaoCaoController@donhangData')->name('backend.baocao.donhang.data');
 });
 
 
