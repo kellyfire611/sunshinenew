@@ -16,9 +16,9 @@ class KhachhangTableSeeder extends Seeder {
         $uFN = new VnFullname();
         $uPI = new VnPersonalInfo();
 
-        $nCustomers = 500;
-        $minFemales = 100;
-        $maxFemales = 350;
+        $nCustomers = 30;
+        $minFemales = 10;
+        $maxFemales = 15;
         $nFemales   = VnBase::RandomNumber($minFemales, $maxFemales);
         $nMales     = $nCustomers - $nFemales;
 

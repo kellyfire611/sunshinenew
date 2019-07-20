@@ -38,8 +38,12 @@ Route::get('/danhsachloai/taomoi', 'LoaiController@taomoi');
 // });
 
 
+// Các route dành riêng cho backend
 Route::group(['middleware' => 'auth'], function()
 {
+    // Dashboard
+    Route::get('/admin', 'BackendController@dashboard')->name('backend.dashboard');
+
     // Chủ đề
     Route::get('/admin/chude', 'ChuDeController@index')->name('backend.chude.index');
     Route::get('/admin/chude/create', 'ChuDeController@create')->name('backend.chude.create');
@@ -60,9 +64,6 @@ Route::group(['middleware' => 'auth'], function()
 });
 
 
-
-// Các route dành riêng cho backend
-Route::get('/admin/', 'BackendController@dashboard')->name('backend.dashboard');
 
 Route::get('/home', 'HomeController@index');
 

@@ -52,11 +52,15 @@
                         </li>
 
                         <li class="{{ Request::is('gioi-thieu') ? 'active-menu' :   '' }}">
-                            <a href="{{ route('frontend.about') }}">About</a>
+                            <a href="{{ route('frontend.about') }}">Giới thiệu</a>
                         </li>
 
                         <li class="{{ Request::is('lien-he') ? 'active-menu' : '' }}">
-                            <a href="{{ route('frontend.contact') }}">Contact</a>
+                            <a href="{{ route('frontend.contact') }}">Liên hệ</a>
+                        </li>
+
+                        <li class="{{ Request::is('admin') ? 'active-menu' : '' }}">
+                            <a href="{{ route('backend.dashboard') }}">Quản trị</a>
                         </li>
                     </ul>
                 </div>
