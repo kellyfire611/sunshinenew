@@ -25,6 +25,8 @@ class BaoCaoController extends Controller
             'tuNgay' => $request->tuNgay,
             'denNgay' => $request->denNgay
         ];
+        // 2019-07-21    50,000,000
+        // 2019-07-20    40,000,000
         $data = DB::select('
             SELECT dh.dh_thoiGianDatHang as thoiGian
                 , SUM(ctdh.ctdh_soLuong * ctdh.ctdh_donGia) as tongThanhTien
@@ -34,6 +36,7 @@ class BaoCaoController extends Controller
             GROUP BY dh.dh_thoiGianDatHang
         ', $parameter);
 
+        // JSON
         return response()->json(array(
             'code'  => 200,
             'data' => $data,

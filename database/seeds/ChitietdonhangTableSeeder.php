@@ -17,7 +17,7 @@ class ChitietdonhangTableSeeder extends Seeder {
         $uPI = new VnPersonalInfo();
         $faker = Faker\Factory::create();
 
-        for ($i=1; $i <= 100; $i++) {
+        for ($i=1; $i <= 20; $i++) {
             $today = new DateTime();
             array_push($list, [
                 'dh_ma'                   => $faker->numberBetween(1, 15),

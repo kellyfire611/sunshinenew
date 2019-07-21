@@ -12,6 +12,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- Các custom style dành riêng cho từng view -->
+    @yield('custom-css')
 </head>
 <body>
     <div id="app">
@@ -74,7 +77,12 @@
         @yield('content')
     </div>
 
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
+    <!-- Các custom script dành riêng cho từng view -->
+    @yield('custom-scripts')
 </body>
 </html>

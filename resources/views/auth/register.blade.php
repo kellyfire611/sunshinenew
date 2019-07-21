@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('custom-css')
+<!-- Các style dành cho thư viện Daterangepicker -->
+<link href="{{ asset('vendor/daterangepicker/daterangepicker.css') }}" type="text/css" rel="stylesheet" />
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -96,7 +101,14 @@
                             </div>
                         </div>
                         <!-- Ngày sinh -->
-                        <div class="form-group{{ $errors->has('nv_ngaySinh') ? ' has-error' : '' }}">
+                        <div class="form-group" >
+                            <label for="nv_ngaySinhDatepicker" class="col-md-4 control-label">Ngày sinh</label>
+
+                            <div class="col-md-6">
+                                <input id="nv_ngaySinhDatepicker" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group{{ $errors->has('nv_ngaySinh') ? ' has-error' : '' }}" style="display: none;">
                             <label for="nv_ngaySinh" class="col-md-4 control-label">Ngày sinh</label>
 
                             <div class="col-md-6">
@@ -151,4 +163,61 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('custom-scripts')
+<!-- Các script dành cho thư viện Daterangepicker -->
+<script type="text/javascript" src="{{ asset('vendor/momentjs/moment.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('vendor/daterangepicker/daterangepicker.min.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        debugger;
+        $('#nv_ngaySinhDatepicker').daterangepicker({
+            "singleDatePicker": true,
+            "showDropdowns": true,
+            "showWeekNumbers": true,
+            "showISOWeekNumbers": true,
+            "timePicker": true,
+            "timePicker24Hour": true,
+            "locale": {
+                "format": "DD/MM/YYYY",
+                "separator": " - ",
+                "applyLabel": "Đồng ý",
+                "cancelLabel": "Hủy",
+                "fromLabel": "Từ",
+                "toLabel": "Đến",
+                "customRangeLabel": "Tùy chọn",
+                "weekLabel": "T",
+                "daysOfWeek": [
+                    "CN",
+                    "T2",
+                    "T3",
+                    "T4",
+                    "T5",
+                    "T6",
+                    "T7"
+                ],
+                "monthNames": [
+                    "Tháng 1",
+                    "Tháng 2",
+                    "Tháng 3",
+                    "Tháng 4",
+                    "Tháng 5",
+                    "Tháng 6",
+                    "Tháng 7",
+                    "Tháng 8",
+                    "Tháng 9",
+                    "Tháng 10",
+                    "Tháng 11",
+                    "Tháng 12",
+                ],
+                "firstDay": 1
+            },
+        }, function(start, end, label) {
+            // Gán giá trị cho Ngày để gởi dữ liệu về Backend
+            $('#nv_ngaySinh').val(start.format('YYYY-MM-DD HH:mm:ss'));
+        });
+        // callback function
+    });
+</script>
 @endsection

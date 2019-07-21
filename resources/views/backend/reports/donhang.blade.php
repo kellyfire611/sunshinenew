@@ -58,6 +58,7 @@ Báo cáo Đơn hàng
 <script>
     $(document).ready(function() {
         $('#thoigianLapBaoCao').daterangepicker({
+            "singleDatePicker": true,
             "showWeekNumbers": true,
             "showISOWeekNumbers": true,
             "timePicker": true,
