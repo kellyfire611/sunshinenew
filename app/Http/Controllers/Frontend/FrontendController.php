@@ -247,4 +247,39 @@ class FrontendController extends Controller
         $data = $query->get();
         return $data;
     }
+    
+    /**
+* Hàm query danh sách sản phẩm theo nhiều điều kiện
+*/
+/*
+private function searchSanPham(Request $request)
+{
+  // 1. Tạo câu lệnh SQL
+  $sqlSelect = <<<EOT
+  SELECT * FROM cusc_sanpham
+  WHERE 1=1
+EOT;
+  
+  // 2. Tạo câu lệnh WHERE điều kiện
+  $sqlWhere = '';
+
+  // Kiểm tra điều kiện `searchByLoaiMa`
+  $searchByLoaiMa = $request->query('searchByLoaiMa');
+  if (!empty($searchByLoaiMa)) {
+    $sqlWhere .= " AND sp_ma LIKE '%$searchByLoaiMa%'";
+  }
+
+  // Kiểm tra điều kiện `searchByLoaiTen`
+  $searchByLoaiTen = $request->query('searchByLoaiTen');
+  if (!empty($searchByLoaiTen)) {
+    $sqlWhere .= " AND sp_ten LIKE '%$searchByLoaiTen%'";
+  }
+
+  // ... các điều kiện khác
+  
+  // 3. Thực thi câu lệnh
+  $data = DB::select($sqlSelect . $sqlWhere)->get();
+  return $data;
+}
+*/
 }
